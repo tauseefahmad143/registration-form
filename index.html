@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        form
+    </title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .center {
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: rgba(128, 128, 128, 0.5);
+        }
+
+        .container {
+            border: 2px solid rgba(250, 248, 248, 0.75);
+            margin-bottom: 10px;
+            font-size: 20px;
+            width: 350px;
+            padding: 10px;
+        }
+
+        input {
+            outline: none;
+        }
+
+        nav {
+            background-color: rgb(220, 20, 60);
+            font-size: 25px;
+            color: white;
+            height: 60px;
+            padding: 10px;
+        }
+
+        .pers {
+            text-decoration: underline;
+            font-size: 20px;
+            color: yellow;
+        }
+
+        label {
+            color: aqua;
+        }
+
+        div {
+            padding: 10px;
+        }
+
+        body {
+            background-attachment: fixed;
+        }
+
+        .but {
+            background: powderblue;
+            color: black;
+            border: none;
+            height: 30px;
+            padding-inline: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.5s;
+        }
+
+        .but:hover {
+            background-color: green;
+            color: white;
+        }
+
+        /* HTML: <div class="loader"></div> */
+        .loader {
+            width: fit-content;
+            font-weight: bold;
+            font-family: monospace;
+            font-size: 30px;
+            background: radial-gradient(circle closest-side, #000 94%, #0000) right/calc(200% - 1em) 100%;
+            animation: l24 1s infinite alternate linear;
+        }
+
+        .loader::before {
+            content: "Tauseef Khan...";
+            line-height: 1em;
+            color: #0000;
+            background: inherit;
+            background-image: radial-gradient(circle closest-side, #fff 94%, #000);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        @keyframes l24 {
+            100% {
+                background-position: left
+            }
+        }
+    </style>
+</head>
+
+<body style="background-image:url(https://i.pinimg.com/originals/c4/b1/99/c4b19969def51164ea4ad9a290a217bf.gif);">
+    <nav>
+        <div class="loader"></div>
+    </nav>
+    <div class="center">
+        <div class="pers">
+            Personal Details:
+        </div>
+        <div class="container">
+            <form method="post" action="" name="formdata" id="formdata">
+
+                <div>
+                    <label for="Fname">First Name:</label>
+                    <input type="text" id="Fname" placeholder="Enter your first name" autofocus name="First Name">
+                </div>
+                <div>
+                    <label for="Lname">Last Name:</label>
+                    <input type="text" id="Lname" placeholder="Enter your last name" name="Last Name">
+                </div>
+                <div>
+                    <span class="pers">Gender:</span>
+                    <label for="gender">Male</label>
+                    <input type="radio" value="male" id="gender" name="Gender">
+                    <label for="fgender"> Female</label>
+                    <input type="radio" value="female" name="Gender" id="fender">
+                    <label for="ogender"> Other</label>
+                    <input type="radio" value="other" name="Gender" id="ogender">
+                </div>
+                <div>
+                    <label for="number">Phone:</label>
+                    <input type="number" id="number" placeholder="Enter your phone number" name="Number">
+                </div>
+                <div>
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" placeholder="Enter your email" name="Email">
+                </div>
+                <div>
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" placeholder="Enter your address" name="Address">
+                </div>
+
+        </div>
+        <div class="pers">Educationl Details:</div>
+        <div class="container">
+            <div>
+                <label for="12th">12<sup>th</sup> marks (%):</label>
+                <input type="number" id="12th" min="33" max="100" name="12th Mark">
+            </div>
+            <div>
+                <label for="10th">10<sup>th</sup> marks (%):</label>
+                <input type="number" id="10th" min="33" max="100" name="10th Mark">
+            </div>
+        </div>
+        <div class="pers">Hobbies !</div>
+        <div class="container">
+            <div>
+                <label for="game">Your favorite game?</label>
+                <select id="game" name="Game">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="scr">Cricket</option>
+                    <option value="scrn">Football</option>
+                    <option value="swt">Dancing</option>
+                    <option value="bmw">Comedy</option>
+                    <option value="for">Singing</option>
+                </select>
+            </div>
+        </div>
+        <button class="but" type="submit" id="submit">Submit</button>
+    </div>
+    </form>
+    </div>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyyd1hJ60GNnKHCWfD1inlP23SFCVMIDXGyUiAo5z4TQoXIen6_00o1c966_GKNVcSVsw/exec'
+        const form = document.forms['formdata']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => alert("Thank you! your form is submitted successfully."))
+                .then(() => { window.location.reload(); })
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+</body>
+
+</html>
